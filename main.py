@@ -27,9 +27,9 @@ class MyWin(QtWidgets.QMainWindow):
                 elif namelist[i] == bag[j]:
                     false += 1
         if false == 0:
-            print("xyi")
+            print("Problem")
         else:
-            print("yes bit")
+            print("Nice")
                     
             
         self.ui.lineEdit.setPlaceholderText("123")
