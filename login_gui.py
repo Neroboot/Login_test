@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(202, 215)
+        MainWindow.resize(200, 190)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -33,10 +33,12 @@ class Ui_MainWindow(object):
         self.lineEdit_3 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.lineEdit_3.setPlaceholderText("Password")
+        self.lineEdit_3.setEchoMode(self.lineEdit_3.Password)
         self.formLayout_3.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.lineEdit_3)
         self.lineEdit_4 = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.lineEdit_4.setPlaceholderText("Password")
+        self.lineEdit_4.setEchoMode(self.lineEdit_4.Password)
         self.formLayout_3.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.lineEdit_4)
         self.pushButton = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.pushButton.setObjectName("pushButton")
