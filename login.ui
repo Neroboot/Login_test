@@ -6,40 +6,92 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>226</width>
-    <height>184</height>
+    <width>464</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>0</y>
-      <width>141</width>
-      <height>129</height>
+      <x>140</x>
+      <y>80</y>
+      <width>231</width>
+      <height>194</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
+    <layout class="QFormLayout" name="formLayout_3">
+     <property name="labelAlignment">
+      <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>20</number>
+     </property>
+     <property name="leftMargin">
+      <number>15</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <item row="0" column="0">
       <widget class="QLineEdit" name="lineEdit"/>
      </item>
-     <item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="lab_nick">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
       <widget class="QLineEdit" name="lineEdit_2"/>
      </item>
-     <item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="lab_email">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
       <widget class="QLineEdit" name="lineEdit_3"/>
      </item>
-     <item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="lab_password">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
       <widget class="QLineEdit" name="lineEdit_4"/>
      </item>
-     <item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="lab_password2">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="sizeIncrement">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="2">
       <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>PushButton</string>
+        <string>Random</string>
        </property>
       </widget>
      </item>
@@ -51,7 +103,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>226</width>
+     <width>464</width>
      <height>21</height>
     </rect>
    </property>
