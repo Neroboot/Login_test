@@ -1,115 +1,65 @@
 import sys
+import re
 from login_gui import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon, QPixmap
 
 
+
 class MainWindow(QtWidgets.QMainWindow):
+
+
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.pushButton.clicked.connect(self.Resault)
+        self.ui.registration_button.clicked.connect(self.Get_registration_user)
+        self.registrationform = []
 
-    # check nickname
-    def Resault(self):
-        # check nickname
-        true = 0
-        false = 0
-        bag = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '@', '_', '-', '+', '-', ]
-        name = self.ui.lineEdit.text()
-        name1 = name.split()
-        namelist = []
-        for i in range(0, len(name1)):
-            for j in range(0, len(name1[i])):
-                namelist.append(name1[i][j])
 
-        if len(namelist) >= 1:
-            for i in range(0, len(namelist)):
-                for j in range(0, len(bag)):
-                    if namelist[i] != bag[j]:
-                        true += 1
-                    elif namelist[i] == bag[j]:
-                        false += 1
-        if false != 0:
-            print("Problem")
-            pixmapfalse = QPixmap('icons/cancel-icon.png')
-            self.ui.lab_nick.setPixmap(pixmapfalse)
-        elif true > 0:
-            print("Nice")
-            pixmaptrue = QPixmap('icons/check-icon.png')
-            self.ui.lab_nick.setPixmap(pixmaptrue)
-        else:
-            print("Вы нечего не написали")
-            pixmapexceptio = QPixmap('icons/cancel-icon.png')
-            self.ui.lab_nick.setPixmap(pixmapexceptio)
-        #check email
-        true_email = 0
-        false_email = 0
-        email = self.ui.lineEdit_2.text()
-        eamil1 = email.split()
-        emaillist = []
-        for i in range(0, len(eamil1)):
-            for j in range(0, len(eamil1[i])):
-                emaillist.append(eamil1[i][j])
-        if len(emaillist) >= 1:
-            for i in range(0, len(emaillist)):
-                if emaillist[i] == "@":
-                    true_email += 1
-        if true_email == 1:
-            print("Nice")
-            pixmaptrue1 = QPixmap('icons/check-icon.png')
-            self.ui.lab_email.setPixmap(pixmaptrue1)
-        elif true_email > 1:
-            print("Вы нечего не написали")
-            pixmapexceptio1 = QPixmap('icons/cancel-icon.png')
-            self.ui.lab_email.setPixmap(pixmapexceptio1)
-        else:
-            print("Вы нечего не написали")
-            pixmapexceptio2 = QPixmap('icons/cancel-icon.png')
-            self.ui.lab_email.setPixmap(pixmapexceptio2)
-        # check password
-
-        password = self.ui.lineEdit_3.text()
-        password1 = password.split()
-        passwordlist = []
-        password_1 = self.ui.lineEdit_4.text()
-        password_2 = password_1.split()
-        passwordlist2 = []
-        count = 0 
-        for i in range(0, len(password1)):
-            for j in range(0, len(password1[i])):
-                passwordlist.append(password1[i][j])
-        for i in range(0, len(password_1)):
-            for j in range(0, len(password_1[i])):
-                passwordlist2.append(password_1[i][j])
-        if len(passwordlist) != 0:
-            if len(passwordlist) == len(passwordlist2):
-                for i in range(0, len(passwordlist)):
-                    if passwordlist[i] == passwordlist2[i]:
-                        count += 1
-                if count == len(passwordlist):
-                    print("Nice")
-                    pixmaptrue3 = QPixmap('icons/check-icon.png')
-                    self.ui.lab_password.setPixmap(pixmaptrue3)
-                    self.ui.lab_password2.setPixmap(pixmaptrue3)
-                elif count > len(passwordlist) or count < len(passwordlist):
-                    print("problem")
-                    pixmapexcepti = QPixmap('icons/cancel-icon.png')
-                    self.ui.lab_password.setPixmap(pixmapexcepti)
-                    self.ui.lab_password2.setPixmap(pixmapexcepti)
-            else:
-                pixmapexcepti = QPixmap('icons/cancel-icon.png')
-                self.ui.lab_password.setPixmap(pixmapexcepti)
-                self.ui.lab_password2.setPixmap(pixmapexcepti)
-        else:
-            pixmapexcepti = QPixmap('icons/cancel-icon.png')
-            self.ui.lab_password.setPixmap(pixmapexcepti)
-            self.ui.lab_password2.setPixmap(pixmapexcepti)
-            
-
+    def Get_registration_user(self):
+        self.get_nick = self.ui.reg_name.text()
+        if self.get_nick != "" and len(self.get_nick) >= 5:
+            self.user_get_registration_nick = self.User_verification_for_registration_nick()
+        self.get_email = self.ui.reg_email.text()
+        if self.get_email != "":
+            self.user_get_registration_email = self.User_verification_for_registration_email()
+        self.Choosing_qmassagebox()
+        
         
 
+
+    def User_verification_for_registration_email(self):
+        for_check_email = re.findall('.', self.get_email)
+        if "@" not in for_check_email:
+            print("this is not a valid email")
+            return False
+        return True
+
+
+    def User_verification_for_registration_nick(self):
+        forbidden_items = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '@', '_', '-', '+', '-']
+        for i in range(0, len(self.get_nick.lower())):
+            if self.get_nick[i] in forbidden_items:
+                print("this is not a valid nick")
+                return False
+        return True
+
+
+            
+    def Choosing_qmassagebox(self):
+        if self.get_email == "" or self.get_nick == "":
+            msgBox = QtWidgets.QMessageBox()
+            msgBox.setText("Вы ничего не ввели")
+            msgBox.exec()
+        elif self.user_get_registration_email != True or self.user_get_registration_nick != True:
+            msgBox = QtWidgets.QMessageBox()
+            msgBox.setText("Вы ввели некорректное имя или email")
+            msgBox.exec()
+        else:    
+            self.User_created_profile()
+    def User_created_profile(self):
+        pass
 
 if __name__=="__main__":
     app = QtWidgets.QApplication(sys.argv)
